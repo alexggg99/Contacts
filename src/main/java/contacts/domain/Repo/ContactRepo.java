@@ -7,6 +7,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -33,10 +34,16 @@ public class ContactRepo {
 //        em.merge(contact);
 //    }
 
-    public List<Contact> findAllContacts() {
-
-        Query query = em.createQuery("Select a from Contact a");
+    public List<Contact> findAllContacts(String username) {
+        Query query = em.createQuery("Select a from Contact a join fetch a.contacts where a.username = :username");
+        query.setParameter("username", username);
         return query.getResultList();
+    }
+
+    public Contact findContact(int contactId) {
+        Query query = em.createQuery("Select a from Contact a where a.id = :contactId");
+        query.setParameter("contactId", contactId);
+        return CollectionUtils.isEmpty(query.getResultList())?null: (Contact) query.getResultList().get(0);
     }
 
     public void merge(Contact contact){

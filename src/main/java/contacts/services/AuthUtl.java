@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthUtl {
 
-    public String getUser(){
+    public String getUserName(){
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
