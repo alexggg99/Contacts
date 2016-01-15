@@ -7,7 +7,7 @@ angular.module("ContactsApp", ['ngRoute'])
     .config(function($routeProvider, $locationProvider){
         $routeProvider.when('/list',{
             controller:'listController',
-            templateUrl: "resources/templates/list.html",
+            templateUrl: "resources/templates/contacts.html",
         });
 
         $locationProvider.html5Mode(true);

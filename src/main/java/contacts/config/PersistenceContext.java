@@ -4,11 +4,6 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
-import org.springframework.jdbc.datasource.init.DatabasePopulator;
-import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -52,6 +47,7 @@ public class PersistenceContext {
         jpaProterties.put("hibernate.hbm2ddl.auto", "update");
         jpaProterties.put("hibernate.connection.characterEncoding", "utf8");
         jpaProterties.put("hibernate.show_sql", "true");
+        jpaProterties.put("hibernate.hbm2ddl.import_files", "/META-INF/schema.sql");
         entityManagerFactoryBean.setJpaProperties(jpaProterties);
         return entityManagerFactoryBean;
     }

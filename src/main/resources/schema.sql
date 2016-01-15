@@ -1,1 +1,0 @@
-insert into CONTACT(id) values(1)

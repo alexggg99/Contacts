@@ -14,23 +14,23 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/list")
-public class ListController {
+@RequestMapping("/contact")
+public class ContactController {
 
     @Autowired
     private ContactRepo contactRepo;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(){
+    public String list(){
         List<Contact> contacts = (List<Contact>) contactRepo.findAllContacts();
-        return "index";
+        return "contacts";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String save(){
         Contact contact = new Contact();
-        contact.id = 2;
-        contactRepo.save(contact);
+        contact.setId(2);
+        contactRepo.merge(contact);
         return "index";
     }
 
