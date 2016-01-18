@@ -1,9 +1,6 @@
 package contacts.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -11,8 +8,15 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "role")
+@Table(name = "ROLE")
 public class Role implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private long id;
+
+    private String authority;
 
     public Role() {
     }
@@ -21,17 +25,11 @@ public class Role implements Serializable {
         this.authority = authority;
     }
 
-    @Id
-    @GeneratedValue
-    private Integer id;
-
-    private String authority;
-
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

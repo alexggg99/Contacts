@@ -19,18 +19,22 @@ public class Contact {
     @Column(name = "ID")
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    public Role authority;
-    @JsonIgnore
-    public String password;
-    public String username;
-
     private String fullName;
     private String vkId;
-    private int phone;
+    private String phone;
 
-    @ManyToMany
-    private List<Contact> contacts = new ArrayList<Contact>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    public Contact() {
+    }
+
+    public Contact(String fullName, String vkId, String phone, User user) {
+        this.fullName = fullName;
+        this.vkId = vkId;
+        this.phone = phone;
+        this.user = user;
+    }
 
     public long getId() {
         return id;
@@ -56,19 +60,19 @@ public class Contact {
         this.vkId = vkId;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public List<Contact> getContacts() {
-        return contacts;
+    public User getUser() {
+        return user;
     }
 
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

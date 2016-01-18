@@ -1,7 +1,9 @@
 package contacts.config;
 
-import contacts.domain.Contact;
+import contacts.domain.Repo.RoleRepo;
+import contacts.domain.Repo.UserRepo;
 import contacts.domain.Role;
+import contacts.services.InitializeDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,34 +24,41 @@ import java.util.Set;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-//    @Autowired
-//    private UserRepo userRepo;
-//    @Autowired
-//    private RoleRepo roleRepo;
+    @Autowired
+    private UserRepo userRepo;
+    @Autowired
+    private RoleRepo roleRepo;
+    @Autowired
+    private InitializeDB initializeDB;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        net.bonvio.model.User user = userRepo.findByUsername(username);
-        Contact user = null;
+        contacts.domain.User user = null;
+        Role role = null;
         if(username.equals("user")){
-            user = new Contact();
-            user.authority = new Role("USER");
-            user.username = "user";
-            user.password = "123";
+            role = new Role("USER");
+            roleRepo.save(role);
+            user = new contacts.domain.User();
+            user.setAuthority(role);
+            user.setUsername("user");
+            user.setPassword("123");
+            userRepo.save(user);
+            initializeDB.insertContacts(user);
         }
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User %s does not exist!", username));
         }
 
-        List<GrantedAuthority> authorities = buildUserAuthority(user.authority);
+        List<GrantedAuthority> authorities = buildUserAuthority(user.getAuthority());
 
         return buildUserForAuthentication(user, authorities);
     }
 
 
-    public User buildUserForAuthentication(contacts.domain.Contact user,
+    public User buildUserForAuthentication(contacts.domain.User user,
                                            List<GrantedAuthority> authorities) {
-        return new User(user.username, user.password,
+        return new User(user.getUsername(), user.getPassword(),
                 true, true, true, true, authorities);
     }
 

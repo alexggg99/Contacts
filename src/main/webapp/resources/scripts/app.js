@@ -3,10 +3,10 @@
  */
 
 
-angular.module("ContactsApp", ['ngRoute'])
+angular.module("ContactsApp", ['ngRoute', 'ngResource'])
     .config(function($routeProvider, $locationProvider){
-        $routeProvider.when('/contact',{
-            controller:'listController',
+        $routeProvider.when('/',{
+            controller:'contactController',
             templateUrl: "resources/templates/contacts.html",
         });
 

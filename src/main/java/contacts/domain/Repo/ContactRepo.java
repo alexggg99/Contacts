@@ -35,7 +35,7 @@ public class ContactRepo {
 //    }
 
     public List<Contact> findAllContacts(String username) {
-        Query query = em.createQuery("Select a from Contact a join fetch a.contacts where a.username = :username");
+        Query query = em.createQuery("Select a from Contact a join fetch a.user u where u.username = :username");
         query.setParameter("username", username);
         return query.getResultList();
     }
@@ -46,8 +46,19 @@ public class ContactRepo {
         return CollectionUtils.isEmpty(query.getResultList())?null: (Contact) query.getResultList().get(0);
     }
 
-    public void merge(Contact contact){
+    public Contact persistContact(Contact contact){
+        em.persist(contact);
+        return  contact;
+    }
+
+    public void update(Contact contact){
         em.merge(contact);
+    }
+
+    public Contact deleteContact(int contactId){
+        Contact contact = em.getReference(Contact.class, contactId);
+        em.remove(contact);
+        return contact;
     }
 
 }
