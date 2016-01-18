@@ -20,4 +20,9 @@ public class IndexController {
         return "login";
     }
 
+    @RequestMapping("/newContact")
+    public String newContact(){
+        return "index";
+    }
+
 }

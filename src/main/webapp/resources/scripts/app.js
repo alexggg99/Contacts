@@ -3,7 +3,7 @@
  */
 
 
-angular.module("ContactsApp", ['ngRoute', 'ngResource'])
+angular.module("ContactsApp", ['ngRoute', 'ngResource', 'ngMessages'])
     .config(function($routeProvider, $locationProvider){
         $routeProvider.when('/',{
             controller:'contactController',
@@ -12,6 +12,10 @@ angular.module("ContactsApp", ['ngRoute', 'ngResource'])
             .when('/logout', {
                 controller:'logoutController',
                 templateUrl: "resources/templates/contacts.html"
+            })
+            .when('/newContact', {
+                controller:'newContactController',
+                templateUrl: "resources/templates/newContact.html"
             });
 
         $locationProvider.html5Mode(true);

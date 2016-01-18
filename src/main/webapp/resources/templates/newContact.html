@@ -1,0 +1,15 @@
+<!--<h4 class="col-sm-offset-2">New Contact</h4>-->
+<!--<br/>-->
+<form name="newContact" novalidate class="form-horizontal">
+    <div class="row form-group">
+        <form-field record="contact" field="fullName" live="false" required="true"></form-field>
+        <form-field record="contact" field="email" live="false"></form-field>
+        <form-field record="contact" field="vkId" live="false"></form-field>
+        <form-field record="contact" field="phone" live="false"></form-field>
+        <form-field record="contact" field="birthday" live="false"></form-field>
+
+        <div class="col-sm-offset-2">
+            <button class="btn btn-primary" ng-click="createContact()">New contact</button>
+        </div>
+    </div>
+</form>

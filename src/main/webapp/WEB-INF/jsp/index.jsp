@@ -23,11 +23,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h1>Contacts</h1>
+                <h2>Contacts</h2>
             </div>
             <div class="col-sm-6">
-                <a href="<c:url value='/logout' />">Logout</a>
+                <h2 class="pull-right">
+                    <a href="<c:url value='/logout' />">Logout</a>
+                </h2>
             </div>
+            <br/><br/>
             <div class="col-sm-12" data-ng-view>
             </div>
         </div>
@@ -38,12 +41,14 @@
   <script src="<c:url value='/resources/bower_components/angular-route/angular-route.js' />"></script>
   <script src="<c:url value='/resources/bower_components/jquery/dist/jquery.js' />"></script>
   <script src="<c:url value='/resources/bower_components/bootstrap/dist/js/bootstrap.js' />"></script>
-
+    <script src="<c:url value='/resources/bower_components/angular-messages/angular-messages.js' />"></script>
   <script src="<c:url value='/resources/scripts/app.js' />"></script>
     <script src="<c:url value='/resources/scripts/controllers/contactController.js' />"></script>
     <script src="<c:url value='/resources/scripts/controllers/logoutController.js' />"></script>
+    <script src="<c:url value='/resources/scripts/controllers/newContactController.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/contact.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/filter.js' />"></script>
+    <script src="<c:url value='/resources/scripts/directives/directive.js' />"></script>
 
 </body>
 </html>

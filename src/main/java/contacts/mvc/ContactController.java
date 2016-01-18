@@ -24,11 +24,6 @@ public class ContactController {
     @Autowired
     private AuthUtl authUtl;
 
-    @RequestMapping
-    public String index(){
-        return "index";
-    }
-
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Contact> getContacts(){
