@@ -10,18 +10,24 @@
 
 <html ng-app="ContactsApp">
 <head>
-    <title>Contacts</title>
 
     <link href="<c:url value='/resources/styles/main.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/bower_components/bootswatch/flatly/bootstrap.css' />" rel="stylesheet">
 
     <base href="/ContactsApp/">
+
 </head>
 <body>
+
     <div class="container">
         <div class="row">
-            <h1>Contacts</h1>
+            <div class="col-sm-6">
+                <h1>Contacts</h1>
+            </div>
+            <div class="col-sm-6">
+                <a href="<c:url value='/logout' />">Logout</a>
+            </div>
             <div class="col-sm-12" data-ng-view>
             </div>
         </div>
@@ -35,7 +41,9 @@
 
   <script src="<c:url value='/resources/scripts/app.js' />"></script>
     <script src="<c:url value='/resources/scripts/controllers/contactController.js' />"></script>
+    <script src="<c:url value='/resources/scripts/controllers/logoutController.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/contact.js' />"></script>
+    <script src="<c:url value='/resources/scripts/services/filter.js' />"></script>
 
 </body>
 </html>

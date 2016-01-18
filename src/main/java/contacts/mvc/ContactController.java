@@ -29,7 +29,7 @@ public class ContactController {
         return "index";
     }
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Contact> getContacts(){
         String username = authUtl.getUserName();
