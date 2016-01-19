@@ -2,14 +2,28 @@
 <!--<br/>-->
 <form name="newContact" novalidate class="form-horizontal">
     <div class="row form-group">
-        <form-field record="contact" field="fullName" live="false" required="true"></form-field>
-        <form-field record="contact" field="email" live="false"></form-field>
-        <form-field record="contact" field="vkId" live="false"></form-field>
-        <form-field record="contact" field="phone" live="false"></form-field>
-        <form-field record="contact" field="birthday" live="false"></form-field>
+
+        <!--<input name="huita" ng-model="huita" type="email" required>-->
+        <!--<pre>{{newContact | json}}</pre>-->
+        <!--<button class="btn btn-primary" ng-disabled="newContact.$invalid">HUITA SEND {{newContact.$invalid}}</button>-->
+
+
+
+        <form-field record="contact" field="fullName" live="false" type="text" required="true"></form-field>
+        <form-field record="contact" field="vkId" live="false" type="url" required="true"></form-field>
+
+        <form-field record="contact" field="email" type="email"></form-field>
+        <form-field record="contact" field="phone" type="tel"></form-field>
+        <form-field record="contact" field="birthday" type="date"></form-field>
+
+        <!--<form-field record="contact" ng-repeat=" (k,v) in contact | keyFilter: 'fullName' | keyFilter: 'vkId' " field="{{k}}"></form-field>-->
+
+        <new-field record="contact" live="false"></new-field>
 
         <div class="col-sm-offset-2">
-            <button class="btn btn-primary" ng-click="createContact()">New contact</button>
+            <button class="btn btn-primary" ng-disabled="newContact.$invalid" ng-click="createContact()">Save contact</button>
+            <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
         </div>
     </div>
 </form>
+{{contact}}

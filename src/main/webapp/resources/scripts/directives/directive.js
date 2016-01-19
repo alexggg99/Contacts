@@ -19,30 +19,60 @@ angular.module("ContactsApp")
               record : '=',
               field : '@',
               live : '@',
-              required : '@'
+              required : '@',
+              type: '@'
           },
             link : function($scope, element, attr){
                 $scope.$on('record:invalid', function(){
                     $scope[$scope.field].$setDirty();
-                })
+                });
                 $scope.types = FieldTypes;
                 $scope.remove = function(field){
                     delete $scope.record[field];
-                    $scope.blureUpdate();
+                    //$scope.blureUpdate();
                 };
-                $scope.blurUpdate = function(){
-                    if($scope.live !== 'false'){
-                        $scope.record.$update(function(updatedRecord){
-                            $scope.record = updatedRecord;
-                        })
-                    }
-                };
-                var saveTimeout;
-                $scope.update = function(){
-                    $timeout.cancel(saveTimeout);
-                    saveTimeout = $timeout($scope.blureUpdate, 1200);
-                };
-
+                //$scope.blurUpdate = function(){
+                //    if($scope.live !== 'false'){
+                //        $scope.record.$update(function(updatedRecord){
+                //            $scope.record = updatedRecord;
+                //        })
+                //    }
+                //};
+                //var saveTimeout;
+                //$scope.update = function(){
+                //    $timeout.cancel(saveTimeout);
+                //    saveTimeout = $timeout($scope.blureUpdate, 1200);
+                //};
             }
         };
+    })
+    .directive('newField', function($filter, FieldTypes){
+        return {
+            restrict:'EA',
+            templateUrl :'resources/templates/new-field.html',
+            replace : true,
+            scope:{
+                record : '=',
+                live : '@'
+            },
+            required:'^form',
+            link:function($scope, element, attr, form){
+                $scope.types = FieldTypes;
+                $scope.field = {};
+                $scope.show = function(type){
+                    $scope.field.type = type;
+                    $scope.display = true;
+                };
+                $scope.remove = function(){
+                    $scope.field.type = {};
+                    $scope.display = false;
+                };
+                $scope.add = function(){
+                    if(form.newField.$valid){
+                        $scope.record[$scope.field.name] = $scope.field.value;
+                        $scope.remove();
+                    }
+                };
+            }
+        }
     })

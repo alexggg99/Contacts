@@ -8,3 +8,14 @@ angular.module("ContactsApp")
             return input[0].toUpperCase() + input.slice(1);
         }
     })
+    .filter('keyFilter',function(){
+        return function(object, query){
+            var result = {};
+            angular.forEach(object, function(val, key){
+                if(key !== query){
+                    result[key] = val;
+                }
+            });
+            return result;
+        }
+    })

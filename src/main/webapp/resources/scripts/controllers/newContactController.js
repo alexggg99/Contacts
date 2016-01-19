@@ -5,21 +5,29 @@
 angular.module("ContactsApp")
     .controller('newContactController', function($scope, Contact, $location){
 
-        $scope.contact = new Contact({
-            fullName : ['','text'],
-            email: ['','email'],
-            vkId : ['','url'],
-            phone : ['','tel'],
-            birthday : ['','date']
-        });
+        //$scope.contact = new Contact({
+        //    fullName : '',
+        //    email: '',
+        //    vkId : '',
+        //    phone : '',
+        //    birthday : ''
+        //});
+
+        $scope.contact = {};
 
         $scope.createContact = function(){
             if($scope.newContact.$invalid){
                 $scope.$broadcast('record:invalid');
             }else{
-                $scope.contact.save();
+                $scope.contact = new Contact($scope.contact);
+                $scope.contact.$save();
                 $location.url('/');
             }
+        };
+
+        $scope.cancel = function(){
+            //$scope.contact = {};
+            $location.href('/');
         }
 
     });

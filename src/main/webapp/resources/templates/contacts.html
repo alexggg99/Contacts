@@ -1,5 +1,5 @@
 <input type="search" class="form-control" placeholder="Search" ng-model="query"/>
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered" ng-init="init()">
     <th>
         <tr>
             <th ng-repeat="field in fields" ng-click="sort(field)">
@@ -17,3 +17,4 @@
         </tr>
     </tbody>
 </table>
+<a class="btn btn-default" ng-href="newContact">New Contact</a>

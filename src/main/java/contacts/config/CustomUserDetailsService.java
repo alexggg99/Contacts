@@ -28,8 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepo userRepo;
     @Autowired
     private RoleRepo roleRepo;
-    @Autowired
-    private InitializeDB initializeDB;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -44,7 +42,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             user.setUsername("user");
             user.setPassword("123");
             userRepo.save(user);
-            initializeDB.insertContacts(user);
         }
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User %s does not exist!", username));

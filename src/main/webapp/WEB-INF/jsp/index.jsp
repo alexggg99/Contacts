@@ -23,14 +23,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h2>Contacts</h2>
+                <h2><a href="<c:url value='/' />">Contacts</a></h2>
             </div>
             <div class="col-sm-6">
                 <h2 class="pull-right">
                     <a href="<c:url value='/logout' />">Logout</a>
                 </h2>
             </div>
-            <br/><br/>
+            <div class="col-sm-12 blank"></div>
             <div class="col-sm-12" data-ng-view>
             </div>
         </div>
