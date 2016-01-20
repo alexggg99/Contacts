@@ -45,7 +45,6 @@
   <script src="<c:url value='/resources/scripts/app.js' />"></script>
     <script src="<c:url value='/resources/scripts/controllers/contactController.js' />"></script>
     <script src="<c:url value='/resources/scripts/controllers/logoutController.js' />"></script>
-    <script src="<c:url value='/resources/scripts/controllers/newContactController.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/contact.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/filter.js' />"></script>
     <script src="<c:url value='/resources/scripts/directives/directive.js' />"></script>

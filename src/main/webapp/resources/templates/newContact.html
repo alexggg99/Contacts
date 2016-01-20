@@ -10,7 +10,7 @@
 
 
         <form-field record="contact" field="fullName" live="false" type="text" required="true"></form-field>
-        <form-field record="contact" field="vkId" live="false" type="url" required="true"></form-field>
+        <form-field record="contact" field="vkId" live="false" type="url"></form-field>
 
         <form-field record="contact" field="email" type="email"></form-field>
         <form-field record="contact" field="phone" type="tel"></form-field>
@@ -27,7 +27,7 @@
 
         <div class="col-sm-offset-2">
             <button class="btn btn-primary" ng-disabled="newContact.$invalid" ng-click="createContact()">Save contact</button>
-            <a class="btn btn-primary" ng-href="{{baseUrl}}/">Cancel</a>
+            <a class="btn btn-primary" ng-click="cancel()">Cancel</a>
         </div>
     </div>
 </form>

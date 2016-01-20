@@ -29,6 +29,7 @@ public class Contact {
     private String facebook;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User user;
 
     public Contact() {

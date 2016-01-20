@@ -32,9 +32,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        net.bonvio.model.User user = userRepo.findByUsername(username);
-        contacts.domain.User user = null;
+        contacts.domain.User user = userRepo.findUserByUsername(username);
         Role role = null;
-        if(username.equals("user")){
+        if(user == null && username.equals("user")){
             role = new Role("USER");
             roleRepo.save(role);
             user = new contacts.domain.User();

@@ -14,10 +14,13 @@ angular.module("ContactsApp", ['ngRoute', 'ngResource', 'ngMessages'])
                 templateUrl: "resources/templates/contacts.html"
             })
             .when('/newContact', {
-                controller:'newContactController',
+                controller:'contactController',
                 templateUrl: "resources/templates/newContact.html"
+            })
+            .when('/editContact/:id', {
+                controller:'contactController',
+                templateUrl: "resources/templates/editContact.html"
             });
-
         $locationProvider.html5Mode(true);
 
     }).value('base', {

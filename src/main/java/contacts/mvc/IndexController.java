@@ -25,4 +25,9 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("/editContact/**")
+    public String editContact(){
+        return "index";
+    }
+
 }

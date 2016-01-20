@@ -40,7 +40,7 @@ public class ContactRepo {
         return query.getResultList();
     }
 
-    public Contact findContact(int contactId) {
+    public Contact findContact(long contactId) {
         Query query = em.createQuery("Select a from Contact a where a.id = :contactId");
         query.setParameter("contactId", contactId);
         return CollectionUtils.isEmpty(query.getResultList())?null: (Contact) query.getResultList().get(0);
@@ -55,10 +55,9 @@ public class ContactRepo {
         em.merge(contact);
     }
 
-    public Contact deleteContact(int contactId){
+    public void deleteContact(long contactId){
         Contact contact = em.getReference(Contact.class, contactId);
         em.remove(contact);
-        return contact;
     }
 
 }
