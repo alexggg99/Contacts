@@ -16,14 +16,18 @@
         <form-field record="contact" field="phone" type="tel"></form-field>
         <form-field record="contact" field="birthday" type="date"></form-field>
 
-        <!--<form-field record="contact" ng-repeat=" (k,v) in contact | keyFilter: 'fullName' | keyFilter: 'vkId' " field="{{k}}"></form-field>-->
+        <form-field record="contact" ng-repeat=" (k,v) in contact
+                                                                | keyFilter: 'fullName'
+                                                                | keyFilter: 'vkId'
+                                                                | keyFilter: 'email'
+                                                                | keyFilter: 'phone'
+                                                                | keyFilter: 'birthday'" field="{{k}}"></form-field>
 
         <new-field record="contact" live="false"></new-field>
 
         <div class="col-sm-offset-2">
             <button class="btn btn-primary" ng-disabled="newContact.$invalid" ng-click="createContact()">Save contact</button>
-            <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+            <a class="btn btn-primary" ng-href="{{baseUrl}}/">Cancel</a>
         </div>
     </div>
 </form>
-{{contact}}

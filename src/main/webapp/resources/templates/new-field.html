@@ -1,9 +1,11 @@
 <div>
 
     <div class="row form-group" ng-form="newField" ng-if="display" ng-class="{'has-error' : {{field}}.$dirty && {{field}}.$invalid }">
-        <div class="col-sm-2">
-            <input type="text" name="fieldName" class="form-control" required ng-model="field.name" placeholder="name"/>
-        </div>
+        <!--<div class="col-sm-2">-->
+            <!--<input type="text" name="fieldName" class="form-control" required ng-model="field.name" placeholder="name"/>-->
+
+        <!--</div>-->
+        <label class="col-sm-2 control-label"> {{field.title}} </label>
         <div class="col-sm-6">
             <input type="{{field.type}}" name="fieldValue" class="form-control" ng-model="field.value" placeholder="value"/>
         </div>
@@ -20,7 +22,7 @@
             </button>
             <div class="dropdown-menu">
                 <li ng-repeat="(k,v) in types">
-                    <a ng-cklick="show(k)">{{v[0]}}</a>
+                    <a ng-click="show(k)">{{k | camelCase}}</a>
                 </li>
             </div>
         </div>

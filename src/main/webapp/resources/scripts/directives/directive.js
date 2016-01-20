@@ -10,6 +10,11 @@ angular.module("ContactsApp")
         tel : ['Phone', 'should be phone a number'],
         email: ['Email','should be a email']
     })
+    .value('newFields', {
+        location : 'text',
+        HomePhone: 'tel',
+        facebook: 'url'
+    })
     .directive('formField', function($timeout, FieldTypes){
         return {
           restrict:'EA',
@@ -46,7 +51,7 @@ angular.module("ContactsApp")
             }
         };
     })
-    .directive('newField', function($filter, FieldTypes){
+    .directive('newField', function($filter, FieldTypes, newFields, $filter){
         return {
             restrict:'EA',
             templateUrl :'resources/templates/new-field.html',
@@ -57,21 +62,23 @@ angular.module("ContactsApp")
             },
             required:'^form',
             link:function($scope, element, attr, form){
-                $scope.types = FieldTypes;
+                $scope.types = newFields;
                 $scope.field = {};
                 $scope.show = function(type){
-                    $scope.field.type = type;
+                    $scope.field.type = $scope.types[type];
+                    $scope.field.title = $filter('camelCase')(type);
                     $scope.display = true;
                 };
                 $scope.remove = function(){
-                    $scope.field.type = {};
+                    $scope.field = {};
                     $scope.display = false;
                 };
                 $scope.add = function(){
-                    if(form.newField.$valid){
-                        $scope.record[$scope.field.name] = $scope.field.value;
+                    //if(form.newField.$valid){
+                        $scope.record[$scope.field.title.toLowerCase()]
+                            = angular.isUndefined($scope.field.value) ? '' : $scope.field.value;
                         $scope.remove();
-                    }
+                    //}
                 };
             }
         }

@@ -3,17 +3,17 @@
  */
 
 angular.module("ContactsApp")
-    .controller('newContactController', function($scope, Contact, $location){
+    .controller('newContactController', function($scope, Contact, $location, base){
 
-        //$scope.contact = new Contact({
-        //    fullName : '',
-        //    email: '',
-        //    vkId : '',
-        //    phone : '',
-        //    birthday : ''
-        //});
+        $scope.baseUrl = base.backend;
 
-        $scope.contact = {};
+        $scope.contact = new Contact({
+            fullName : '',
+            email: '',
+            vkId : '',
+            phone : '',
+            birthday : ''
+        });
 
         $scope.createContact = function(){
             if($scope.newContact.$invalid){
@@ -27,7 +27,7 @@ angular.module("ContactsApp")
 
         $scope.cancel = function(){
             //$scope.contact = {};
-            $location.href('/');
+            $location.path('/');
         }
 
     });
