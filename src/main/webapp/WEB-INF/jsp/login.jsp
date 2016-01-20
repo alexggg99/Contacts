@@ -29,6 +29,7 @@
 
 
   <h3 class="container">
+
       <form name='loginForm'
             action="<c:url value='/login' />" class="form-signin" method='POST'>
       <h2 class="form-signin-heading">Авторизуйтесь</h2>
@@ -49,6 +50,7 @@
           <input type="checkbox" id="remember-me" name="remember-me"> Запомнить
         </label>
       </div>
+      <p><a href="<c:url value='/registration' />">Зарегистрироваться</a></p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 
