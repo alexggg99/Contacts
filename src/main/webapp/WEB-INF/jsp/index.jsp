@@ -20,7 +20,7 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" ng-controller="navBarController">
         <div class="row">
             <div class="col-sm-6">
                 <h2><a href="<c:url value='/' />">Contacts</a></h2>
@@ -30,6 +30,7 @@
                     <a href="<c:url value='/logout' />">Logout</a>
                 </h2>
             </div>
+            <div class="col-sm-12" ng-include='"resources/templates/nav.html"'></div>
             <div class="col-sm-12 blank"></div>
             <div class="col-sm-12" data-ng-view>
             </div>
@@ -45,6 +46,7 @@
   <script src="<c:url value='/resources/scripts/app.js' />"></script>
     <script src="<c:url value='/resources/scripts/controllers/contactController.js' />"></script>
     <script src="<c:url value='/resources/scripts/controllers/logoutController.js' />"></script>
+    <script src="<c:url value='/resources/scripts/controllers/NavBarController.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/contact.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/filter.js' />"></script>
     <script src="<c:url value='/resources/scripts/directives/directive.js' />"></script>

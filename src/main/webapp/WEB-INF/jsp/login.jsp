@@ -27,10 +27,12 @@
 <body>
 
 
+
   <h3 class="container">
       <form name='loginForm'
             action="<c:url value='/login' />" class="form-signin" method='POST'>
       <h2 class="form-signin-heading">Авторизуйтесь</h2>
+          <h4>(login:user, password:123)</h4>
           <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
               <div class="alert alert-danger" role="alert">
                   <span>

@@ -3,9 +3,11 @@
  */
 
 angular.module("ContactsApp")
-    .controller('contactController', function($scope, Contact, $location, base, $routeParams){
+    .controller('contactController', function($scope, $rootScope, Contact, $location, base, $routeParams){
 
         $scope.fields = ['id' ,'fullName', 'phone'];
+
+        $rootScope.PAGE = 'all';
 
         $scope.sort = function(field){
             $scope.sort.field = field;
@@ -52,7 +54,9 @@ angular.module("ContactsApp")
             $location.path('/');
         };
 
-        $scope.contact = Contact.get({id: parseInt($routeParams.id, 10)});
+        if($routeParams.id != null){
+            $scope.contact = Contact.get({id: parseInt($routeParams.id, 10)});
+        }
 
         $scope.delete = function(){
             $scope.contact.$delete(function(){
