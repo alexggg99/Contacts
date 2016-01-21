@@ -33,16 +33,16 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        net.bonvio.model.User user = userRepo.findByUsername(username);
         contacts.domain.User user = userRepo.findUserByUsername(username);
-        Role role = null;
-        if(user == null && username.equals("user")){
-            role = new Role("USER");
-            roleRepo.save(role);
-            user = new contacts.domain.User();
-            user.setAuthority(role);
-            user.setUsername("user");
-            user.setPassword("123");
-            userRepo.save(user);
-        }
+//        Role role = null;
+//        if(user == null && username.equals("user")){
+//            role = new Role("USER");
+//            roleRepo.save(role);
+//            user = new contacts.domain.User();
+//            user.setAuthority(role);
+//            user.setUsername("user");
+//            user.setPassword("123");
+//            userRepo.save(user);
+//        }
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User %s does not exist!", username));
         }
