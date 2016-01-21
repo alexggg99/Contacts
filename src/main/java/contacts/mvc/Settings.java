@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/settings")
+@RequestMapping("/settings.json")
 public class Settings {
 
     @Autowired

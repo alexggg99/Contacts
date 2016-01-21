@@ -21,6 +21,10 @@ angular.module("ContactsApp", ['ngRoute', 'ngResource', 'ngMessages'])
                 controller:'contactController',
                 templateUrl: "resources/templates/editContact.html"
             })
+            .when('/settings',{
+                controller:'settingsController',
+                templateUrl: "resources/templates/settings.html"
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -28,4 +32,10 @@ angular.module("ContactsApp", ['ngRoute', 'ngResource', 'ngMessages'])
 
     }).value('base', {
         backend: '/ContactsApp'
+    })
+    .value('options', {})
+    .run(function(options, Fields){
+        Fields.get().then(function(data){
+            options.dispalyed_fields = data;
+        })
     });

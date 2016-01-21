@@ -51,6 +51,11 @@ public class IndexController {
         return "registration";
     }
 
+    @RequestMapping("/settings")
+    public String settings(){
+        return "index";
+    }
+
     @RequestMapping(value = "/regUser", method = RequestMethod.POST)
     public @ResponseBody String regUser(@RequestBody String request){
 
@@ -81,11 +86,6 @@ public class IndexController {
         user = new User(role, password, username);
         userRepo.save(user);
 
-//        ModelAndView modelAndView = new ModelAndView("registration");
-//        if(user.getUsername().length() <4 || user.getPassword().length() <4){
-//            modelAndView.addObject("badCredentions", false);
-//        }
-//        System.out.println(user);
         return "{\"error\": \"success\"}";
     }
 

@@ -7,22 +7,27 @@ angular.module("ContactsApp")
             'update':{method:'PUT'}
         })
     })
-    .factory('Fields', function($q, $http, Contact, base){
-        //return $resource(base.backend + '/contact/getOptions')
-        var url = base.backend+'/settings',
+    .factory('Fields', function($q, $http, Contact, base, $resource){
+        //return $resource(base.backend + '/settings')
+        var url = base.backend+'/settings.json',
             ignore = ['fullName', 'id' ],
             allFields = [],
-            deferred = $q.defer(),
-            contacts = Contact.query(function(){
-                contacts.forEach(function(c){
-                    Object.key(c).forEach(function(k){
-                        if(allFields.indexOf(k) < 0 && ignore.indexOf(k) < 0){
-                            allFields.push(k);
-                        }
-                    });
-                });
-                deferred.resolve(allFields);
-            });
+            deferred = $q.defer();
+            //contacts = Contact.query(function(){
+            //    contacts.forEach(function(c){
+            //        Object.key(c).forEach(function(k){
+            //            if(allFields.indexOf(k) < 0 && ignore.indexOf(k) < 0){
+            //                allFields.push(k);
+            //            }
+            //        });
+            //    });
+            //    deferred.resolve(allFields);
+            //    console.log(contacts);
+            //});
+        var resource = $resource(url);
+        allFields = resource.query(function(res){
+            allFields = res;
+        });
         return {
             get: function(){
                 return $http.get(url);
@@ -31,7 +36,8 @@ angular.module("ContactsApp")
                 return $http.post(url, { fields : newFields });
             },
             headers: function(){
-                return deferred.promise;
+                //return deferred.promise;
+                return allFields;
             }
         }
     });
