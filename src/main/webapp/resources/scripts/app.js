@@ -20,6 +20,9 @@ angular.module("ContactsApp", ['ngRoute', 'ngResource', 'ngMessages'])
             .when('/editContact/:id', {
                 controller:'contactController',
                 templateUrl: "resources/templates/editContact.html"
+            })
+            .otherwise({
+                redirectTo: '/'
             });
         $locationProvider.html5Mode(true);
 
