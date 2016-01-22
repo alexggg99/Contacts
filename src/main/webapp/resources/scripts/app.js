@@ -36,6 +36,6 @@ angular.module("ContactsApp", ['ngRoute', 'ngResource', 'ngMessages'])
     .value('options', {})
     .run(function(options, Fields){
         Fields.get().then(function(data){
-            options.dispalyed_fields = data;
+            options.dispalyed_fields = data.data;
         })
     });

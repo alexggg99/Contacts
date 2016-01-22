@@ -3,9 +3,11 @@
  */
 
 angular.module("ContactsApp")
-    .controller('contactController', function($scope, $rootScope, Contact, $location, base, $routeParams){
+    .controller('contactController', function($scope, $rootScope, Contact, $location, base, $routeParams, options){
 
-        $scope.fields = ['id' ,'fullName', 'phone'];
+        //$scope.fields = ['fullName', 'phone'].concat(options.dispalyed_fields);
+        $scope.fields = options.dispalyed_fields;
+        //$scope.fields = ["fullName", "vk", "birthday"];
 
         $rootScope.PAGE = 'all';
 
@@ -21,18 +23,18 @@ angular.module("ContactsApp")
             $location.url('/editContact/' + id);
         }
 
-        $scope.contacts = [];
+        //$scope.contacts = [];
 
-        $scope.init = function(){
+        //$scope.init = function(){
             $scope.contacts = Contact.query();
-        }
+        //}
 
         $scope.baseUrl = base.backend;
 
         $scope.contact = new Contact({
             fullName : '',
             email: '',
-            vkId : '',
+            vk : '',
             phone : '',
             birthday : ''
         });
@@ -55,7 +57,11 @@ angular.module("ContactsApp")
         };
 
         if($routeParams.id != null){
-            $scope.contact = Contact.get({id: parseInt($routeParams.id, 10)});
+            $scope.contact = Contact.get({id: parseInt($routeParams.id, 10)}, function(){
+                if($scope.contact.birthday != null){
+                    $scope.contact.birthday = new Date($scope.contact.birthday);
+                }
+            });
         }
 
         $scope.delete = function(){

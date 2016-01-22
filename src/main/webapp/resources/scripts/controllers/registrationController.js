@@ -2,7 +2,10 @@
  * Created by alexggg99 on 15.01.16.
  */
 
-angular.module("ContactsApp")
+angular.module("ContactsAppRegistration", ['ngResource'])
+    .value('base', {
+        backend: '/ContactsApp'
+    })
     .controller('registrationController', function($scope, registration){
 
         $scope.user = {};

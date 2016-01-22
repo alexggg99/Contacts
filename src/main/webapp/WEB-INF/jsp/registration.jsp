@@ -10,7 +10,7 @@
 <%--<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>--%>
 
 
-<html ng-app="ContactsApp">
+<html ng-app="ContactsAppRegistration">
 <head>
     <title>Registration</title>
 
@@ -105,7 +105,6 @@
 <script src="<c:url value='/resources/bower_components/jquery/dist/jquery.js' />"></script>
 <script src="<c:url value='/resources/bower_components/bootstrap/dist/js/bootstrap.js' />"></script>
 <script src="<c:url value='/resources/bower_components/angular-messages/angular-messages.js' />"></script>
-<script src="<c:url value='/resources/scripts/app.js' />"></script>
 <script src="<c:url value='/resources/scripts/controllers/registrationController.js' />"></script>
 <script src="<c:url value='/resources/scripts/services/auth.js' />"></script>
 

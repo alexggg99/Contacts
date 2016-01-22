@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,10 +21,12 @@ public class Contact {
     private long id;
 
     private String fullName;
-    private String vkId;
+    private String vk;
     private String phone;
     private String email;
-    private String Birthday;
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
+
     private String location;
     private String homephone;
     private String facebook;
@@ -35,9 +38,9 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact(String fullName, String vkId, String phone, User user) {
+    public Contact(String fullName, String vk, String phone, User user) {
         this.fullName = fullName;
-        this.vkId = vkId;
+        this.vk = vk;
         this.phone = phone;
         this.user = user;
     }
@@ -58,12 +61,12 @@ public class Contact {
         this.fullName = fullName;
     }
 
-    public String getVkId() {
-        return vkId;
+    public String getVk() {
+        return vk;
     }
 
-    public void setVkId(String vkId) {
-        this.vkId = vkId;
+    public void setVk(String vk) {
+        this.vk = vk;
     }
 
     public String getPhone() {
@@ -90,12 +93,12 @@ public class Contact {
         this.email = email;
     }
 
-    public String getBirthday() {
-        return Birthday;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setBirthday(String birthday) {
-        Birthday = birthday;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getLocation() {

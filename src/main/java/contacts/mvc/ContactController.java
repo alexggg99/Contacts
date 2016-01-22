@@ -50,6 +50,7 @@ public class ContactController {
     public @ResponseBody Contact createContact(@RequestBody Contact contact){
         User user = authUtl.getUser();
         contact.setUser(user);
+
         contactRepo.persistContact(contact);
         return contact;
     }

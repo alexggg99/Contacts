@@ -6,39 +6,5 @@ angular.module("ContactsApp")
         return $resource(base.backend + '/contact/:id',{id:'@id'},{
             'update':{method:'PUT'}
         })
-    })
-    .factory('Fields', function($q, $http, Contact, base, $resource){
-        //return $resource(base.backend + '/settings')
-        var url = base.backend+'/settings.json',
-            ignore = ['fullName', 'id' ],
-            allFields = [],
-            deferred = $q.defer();
-            //contacts = Contact.query(function(){
-            //    contacts.forEach(function(c){
-            //        Object.key(c).forEach(function(k){
-            //            if(allFields.indexOf(k) < 0 && ignore.indexOf(k) < 0){
-            //                allFields.push(k);
-            //            }
-            //        });
-            //    });
-            //    deferred.resolve(allFields);
-            //    console.log(contacts);
-            //});
-        var resource = $resource(url);
-        allFields = resource.query(function(res){
-            allFields = res;
-        });
-        return {
-            get: function(){
-                return $http.get(url);
-            },
-            set: function(newFields){
-                return $http.post(url, { fields : newFields });
-            },
-            headers: function(){
-                //return deferred.promise;
-                return allFields;
-            }
-        }
     });
 

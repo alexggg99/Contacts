@@ -2,8 +2,10 @@ package contacts.mvc;
 
 import contacts.domain.Repo.RoleRepo;
 import contacts.domain.Repo.UserRepo;
+import contacts.domain.Repo.UserSettingsRepo;
 import contacts.domain.Role;
 import contacts.domain.User;
+import contacts.domain.UserSettings;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -25,6 +27,8 @@ public class IndexController {
     private UserRepo userRepo;
     @Autowired
     private RoleRepo roleRepo;
+    @Autowired
+    private UserSettingsRepo userSettingsRepo;
 
     @RequestMapping("/*")
     public String index(){
@@ -85,6 +89,11 @@ public class IndexController {
         }
         user = new User(role, password, username);
         userRepo.save(user);
+        //initialize default user settings
+        UserSettings setting = new UserSettings(user, "fullName");
+        userSettingsRepo.save(setting);
+        setting = new UserSettings(user, "vk");
+        userSettingsRepo.save(setting);
 
         return "{\"error\": \"success\"}";
     }

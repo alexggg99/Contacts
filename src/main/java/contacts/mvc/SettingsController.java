@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/settings.json")
-public class Settings {
+public class SettingsController {
 
     @Autowired
     private AuthUtl authUtl;
@@ -30,8 +30,7 @@ public class Settings {
     private UserSettingsRepo userSettingsRepo;
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody
-    List<String> getAllSettings() throws ClassNotFoundException {
+    public List<String> getAllSettings() throws ClassNotFoundException {
         List<String> result = new ArrayList<String>();
         Field[] fields = contactUtil.getContactFields();
         for(Field field : fields){
@@ -46,12 +45,30 @@ public class Settings {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> setSettings(@RequestBody List<String> settings){
         User user = authUtl.getUser();
-        UserSettings setting = null;
-        for(String str : settings){
-            setting = new UserSettings(user, str);
-            userSettingsRepo.save(setting);
+        //delete all userSettings
+        List<UserSettings> list = userSettingsRepo.findUserSettingsByUser(user.getUsername());
+        for(UserSettings userSettings : list){
+            userSettingsRepo.delete(userSettings.getId());
         }
+        List<UserSettings> s = userSettingsRepo.findUserSettingsByUser(user.getUsername());
+        UserSettings set;
+        for(String setting : settings){
+            set = new UserSettings(user, setting);
+            userSettingsRepo.save(set);
+        }
+        s = userSettingsRepo.findUserSettingsByUser(user.getUsername());
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getUserSettings", method = RequestMethod.GET)
+    public List<String> getUserSettings(){
+        User currentUser = authUtl.getUser();
+        List<String> output = new ArrayList<String>();
+        List<UserSettings> settings = userSettingsRepo.findUserSettingsByUser(currentUser.getUsername());
+        for(UserSettings s : settings){
+            output.add(s.getSetting());
+        }
+        return output;
     }
 
 }

@@ -49,6 +49,7 @@
     <script src="<c:url value='/resources/scripts/controllers/NavBarController.js' />"></script>
     <script src="<c:url value='/resources/scripts/controllers/settingsController.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/contact.js' />"></script>
+    <script src="<c:url value='/resources/scripts/services/fields.js' />"></script>
     <script src="<c:url value='/resources/scripts/services/filter.js' />"></script>
     <script src="<c:url value='/resources/scripts/directives/directive.js' />"></script>
 
